@@ -1,0 +1,144 @@
+<section class="wrapper">
+
+  <div style="width: 500px;">
+    <div class="col-lg-12">
+      <h3 class="page-header"><i class="fa fa-laptop"></i> Editer Produits</h3>
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="home">Home</a></li>
+        <li><i class="fa fa-laptop"></i><a href="listeProduits">Listes Produits</a></li>
+        <li><i class="fa fa-laptop"></i>Editer Produit : {{produitEdit.titre}}</li>
+
+      </ol>
+    </div>
+
+    
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="produitEdit.idProduit" name="idProduit" type="hidden">
+      </div>
+
+      <div class="form-group">
+        
+        <!--<img style="max-height: 120px;" class="img" alt="avatar" [src]="imgSrc">-->
+
+        <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+          <div class="text-center">
+            <label>Image Url</label><br>
+            <img [src]="imgSrc" width="200px" height="150px" (click)="fileUploader.click()">
+          </div>
+          <div class="form-group">
+            <label>Choisir la nouvelle image du produit à editer</label>
+            <input accept="image/*" class="form-control" type="file" #fileUploader formControlName="imageUrl"
+              (change)="showPreview($event)">
+          </div>
+
+          <div class="form-group">
+            <label>Sous Categorie</label><br>
+            <input class="form-control" name="sousCategorie" formControlName="sousCategorie" type="text" [(ngModel)]="produitEdit.sousCategorie.titre"><br>
+            <select name="sousCategorie" formControlName="sousCategorie" [(ngModel)]="produitEdit.sousCategorie.titre">
+              <option  value="">
+                Par deefaut : {{produitEdit.sousCategorie.titre}}
+              </option>
+              <option *ngFor="let s of listeSousCategorie" name="sousCategorie">{{s.titre}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Titre</label>
+            <input type="text" class="form-control" name="titre" formControlName="titre"
+              [(ngModel)]="produitEdit.titre">
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" name="description" formControlName="description"
+              [(ngModel)]="produitEdit.description">
+          </div>
+
+          <div class="form-group">
+            <label>Nature</label>
+            <input type="text" class="form-control" name="nature" formControlName="nature"
+              [(ngModel)]="produitEdit.nature">
+          </div>
+
+
+          <div class="form-group">
+            <label>Stock</label>
+            <input type="text" class="form-control" name="prix" formControlName="stock" [(ngModel)]="produitEdit.stock">
+          </div>
+
+
+
+          <div class="form-group">
+            <label>Prix</label>
+            <input type="text" class="form-control" name="prix" formControlName="prix" [(ngModel)]="produitEdit.prix">
+          </div>
+          <button type="submit" class="btn btn-success">Editer</button>
+        </form>
+
+
+      </div>
+
+
+
+      
+    
+
+
+
+    <!--
+      <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+        <div class="text-center">
+            <img [src]="imgSrc" width="200px" height="150px" (click)="fileUploader.click()">
+          </div>
+          <div class="form-group">
+            <label>Choisir la nouvelle image du produit à editer</label>
+            <input accept="image/*" class="form-control" type="file" #fileUploader
+              formControlName="imageUrl" (change)="showPreview($event)">
+          </div>
+
+
+
+        <div class="form-group">
+          <label>Sous Categorie</label>
+          <input type="text" class="form-control" name="titre" formControlName="sousCategorie">
+
+        </div>
+
+
+
+        <div class="form-group">
+          <label>Titre</label>
+          <input type="text" class="form-control" name="titre" formControlName="titre">
+        </div>
+
+
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" class="form-control" name="description" formControlName="description">
+        </div>
+
+        <div class="form-group">
+          <label>Nature</label>
+          <input type="text" class="form-control" name="nature" formControlName="nature">
+        </div>
+
+
+        <div class="form-group">
+          <label>Stock</label>
+          <input type="text" class="form-control" name="prix" formControlName="stock">
+        </div>
+
+
+
+        <div class="form-group">
+          <label>Prix</label>
+          <input type="text" class="form-control" name="prix" formControlName="prix">
+        </div>
+
+
+        <button type="submit" class="btn btn-success btn-block float-right" >Submit</button>
+      </form>
+      -->
+  </div>
+
+</section>

@@ -1,0 +1,56 @@
+<section class="wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-laptop"></i> Listes Commandes</h3>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a href="home">Home</a></li>
+                <li><i class="fa fa-laptop"></i><a href="listeCommandes">Listes Commandes</a></li>
+                <li><i class="fa fa-laptop"></i>Affecter les Commandes</li>
+
+            </ol>
+        </div>
+    </div>
+    <div class="col-9">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Adresse Livraison</th>    
+                    <th scope="col">Date</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Choisir un Livreur</th>
+                    <th scope="col">Confirmer</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                   
+                    <td>
+                        <input disabled="disabled" type="text" [(ngModel)]="commande.adresseLivraison">
+                    </td>
+                    
+                    <td>
+                        <input disabled="disabled" type="text" [(ngModel)]="commande.dateLivraison">
+                    </td>
+                    
+                    <td>
+                        <input disabled="disabled" type="text" [(ngModel)]="commande.client.nom">
+                    </td>
+                    <td>
+                        <p style="color: red" *ngIf="!afficherListeLivreur;"> déja affecté</p>
+                        <select name="livreur" *ngIf="afficherListeLivreur;">
+                           
+                            <option value="--Aucune Affectation--">--Aucune Affectation--</option>
+                            <option *ngFor="let l of listeLivreurs">
+                                {{l.id}} . {{l.nom}}
+                            </option>
+                        </select>
+
+                    </td>
+                    <td><button type="submit" class="btn btn-success" (click)="affecterCommande(commande)">affecter</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

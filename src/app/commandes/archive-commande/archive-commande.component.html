@@ -1,0 +1,54 @@
+<section class="wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-laptop"></i> Listes Archive Commandes</h3>
+            <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a href="home">Home</a></li>
+                <li><i class="fa fa-laptop"></i>Listes Archives Commandes</li>
+
+            </ol>
+        </div>
+    </div>
+    <div class="col-9">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">IdCommandes</th>
+                    <th scope="col">Adresse Livraison</th>
+                    <th scope="col">Etat</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Lignes Commandes (Produits)</th>
+                    <th scope="col">Client</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of listeArchiveCommandes">
+                    <td>{{ c.idCommande}}</td>
+                    <td>{{ c.adresseLivraison}}</td>
+                    <td>{{ c.etat}}</td>
+                    <td>{{ c.dateLivraison}}</td>
+                    <td>
+                        <div class="col-3">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nom Produit</th>
+                                        <th scope="col">Quantite</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let l of c.ligneCommande">
+                                        <td>{{ l.produit.titre}}</td>
+                                        <td>{{ l.quantite}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                    <td>{{ c.client.nom}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

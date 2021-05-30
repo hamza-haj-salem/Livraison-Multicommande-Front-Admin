@@ -1,0 +1,81 @@
+<section class="wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 class="page-header"><i class="fa fa-laptop"></i> Listes Clients</h3>
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="home">Home</a></li>
+        <li><i class="fa fa-laptop"></i>Listes Clients</li>
+
+      </ol>
+    </div>
+  </div>
+  <div class="col-9">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Adresse</th>
+          <th scope="col">Email</th>
+          <th scope="col">Image</th>
+          <th scope="col">Libelle</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Prenom</th>
+          <th scope="col">Supprimer</th>
+          <th scope="col">Bloquer</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of listeClients">
+          <td>{{ c.id}}</td>
+          <td>{{ c.adresse}}</td>
+          <td>{{ c.email}}</td>
+          <td> <img alt="avatar" src="assets/menu/photo_profil_client/{{ c.image_id}}.jpg"></td>
+          <td>{{ c.libelle}}</td>
+          <td>{{ c.nom}}</td>
+          <td>{{ c.prenom}}</td>
+          <td>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" (click)="alerte(c.id)">
+              Supprimer
+            </button>
+
+          </td>
+
+          <td>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+              Bloquer
+            </button>
+
+            <!-- Modal  ml bootstrap -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Bloquer Un Client</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Etes vous sur de Bloquer Ce Client !!
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                    <button type="button" class="btn btn-danger" (click)="BloquerClient(c.id)">Oui</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

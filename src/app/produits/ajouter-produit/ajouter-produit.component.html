@@ -1,0 +1,90 @@
+<section class="wrapper">
+  <div style="width: 500px;">
+    <div class="col-lg-12">
+      <h3 class="page-header"><i class="fa fa-laptop"></i> Ajouter Produits</h3>
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="home">Home</a></li>
+        <li><i class="fa fa-laptop"></i><a href="listeProduits">Listes Produits</a></li>
+        <li><i class="fa fa-laptop"></i>Ajouter Produit</li>
+
+      </ol>
+    </div>
+
+
+
+
+
+
+
+    <div class="card" style="width:30rem;">
+      <div class="card-bod">
+        <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+          <div class="text-center">
+            <img [src]="imgSrc" width="200px" height="150px" (click)="fileUploader.click()">
+          </div>
+          <div class="form-group">
+            <label>Choisir l'image du produit</label>
+            <input accept="image/*" class="form-control" type="file" #fileUploader formControlName="imageUrl"
+              (change)="showPreview($event)">
+
+            <div class="text-danger" *ngIf="isSubmitted && formControls.imageUrl.errors?.required">Ce champ est
+              obligatoire..
+            </div>
+          </div>
+
+
+
+          <div class="form-group">
+            <label>Sous Categorie</label>
+            <select name="sousCategorie" formControlName="sousCategorie">
+              <option value="--Choisir La Sous Categorie de Votre Produit--">--Choisir La Sous Categorie de Votre
+                Produit--
+              </option>
+              <option *ngFor="let s of listeSousCategorie" name="sousCategorie">{{s.titre}}</option>
+            </select>
+          </div>
+
+
+
+          <div class="form-group">
+            <label>Titre</label>
+            <input type="text" class="form-control" name="titre" formControlName="titre">
+          </div>
+
+
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" name="description" formControlName="description">
+          </div>
+
+          <div class="form-group">
+            <label>Nature</label>
+            <input type="text" class="form-control" name="nature" formControlName="nature">
+          </div>
+
+
+          <div class="form-group">
+            <label>Stock</label>
+            <input type="number" class="form-control" name="prix" formControlName="stock">
+          </div>
+
+
+
+          <div class="form-group">
+            <label>Prix</label>
+            <input type="number" class="form-control" name="prix" formControlName="prix">
+          </div>
+
+
+          <button type="submit" class="btn btn-success btn-block float-right" >Submit</button>
+        </form>
+      </div>
+    </div>
+
+
+
+
+
+
+  </div>
+</section>
