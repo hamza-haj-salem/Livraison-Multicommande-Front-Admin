@@ -6,8 +6,13 @@ export class Administrateur {
     public motDePasse:string;
     public adresse:string;
     public imageUrl:string;
+    public numTelephone:number;
     
     constructor(){}
+
+    public set $numTelephone(x:number){
+        this.$numTelephone=x;
+    }
 
     public set $id(x:number){
         this.$id=x;

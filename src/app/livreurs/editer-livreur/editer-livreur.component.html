@@ -10,23 +10,43 @@
         </ol>
       </div>
     
-      <form >
-        <div class="form-group">
-          <label>Nom</label>
-          <input type="text" class="form-control" [(ngModel)]="livreurEdit.nom" name="nom">
+      <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+        <div class="text-center">
+          <img [src]="imgSrc" width="200px" height="150px" (click)="fileUploader.click()" >
         </div>
-    
+        <div class="form-group">
+          <label>Choisir l'image du Livreur</label>
+          <input accept="image/*" class="form-control" type="file" #fileUploader formControlName="imageUrl"
+            (change)="showPreview($event)" >
+
+          <div class="text-danger" *ngIf="isSubmitted && formControls.imageUrlLivreur.errors?.required">Ce champ est
+            obligatoire..
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>nom</label>
+          <input type="text" class="form-control" name="nom" formControlName="nom" [(ngModel)]="livreurEdit.nom">
+        </div>
+
         <div class="form-group">
           <label>Prenom</label>
-          <input type="text" class="form-control"[(ngModel)]="livreurEdit.prenom" name="prenom">
+          <input type="text" class="form-control" name="prenom" formControlName="prenom" [(ngModel)]="livreurEdit.prenom">
         </div>
-    
+
         <div class="form-group">
-          <label>Image Id</label>
-          <input type="text" class="form-control" [(ngModel)]="livreurEdit.image_id" name="imageId">
+          <label>Secteur</label>
+          <input type="text" class="form-control" name="secteur" formControlName="secteur" [(ngModel)]="livreurEdit.secteur">
         </div>
-    
-        <button type="submit" class="btn btn-success" (click)="editerLivreur()">Editer</button>
+
+      
+
+
+
+       
+
+
+        <button type="submit" class="btn btn-success btn-block float-right" >Submit</button>
       </form>
     </div>
     </section>

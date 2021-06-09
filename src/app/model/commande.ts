@@ -1,5 +1,6 @@
 import { LigneCommande } from './ligne-commande';
 import { Client } from './client';
+import { Livreur } from './Livreur';
 
 export class Commande {
     public idCommande:number;
@@ -8,8 +9,13 @@ export class Commande {
     public dateLivraison:Date;
     public ligneCommande: LigneCommande[];
     public client: Client;
+    public livreur: Livreur;
 
     constructor(){}
+
+    public set $livreur(x:Livreur){
+        this.$livreur=x;
+    }
 
     public set $idCommande(x:number){
         this.$idCommande=x;

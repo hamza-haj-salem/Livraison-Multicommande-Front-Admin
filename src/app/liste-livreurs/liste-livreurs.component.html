@@ -18,8 +18,8 @@
           <th scope="col">Photo</th>
           <th scope="col">Nom</th>
           <th scope="col">Prenom</th>
-          <th scope="col">Edit</th>
-          <th scope="col">Supprimer</th>
+          <th scope="col"> <i class="icon_cogs"></i>Actions</th>
+
          
          
         </tr>
@@ -27,21 +27,21 @@
       <tbody>
         <tr *ngFor="let l of listeLivreurs">
           <td >{{ l.id}}</td>
-          <td > <img alt="avatar" src="assets/menu/photo_profil_livreur/{{ l.image_id}}.jpg"></td>
+          <td > <img alt="avatar" src="{{l.imageUrl}}" style="width: 30px;height: 30px;"></td>
           <td >{{ l.nom}}</td>
           <td >{{ l.prenom}}</td>
-          <td>
-            <button type="button" class="btn btn-success" (click)="EditLivreur(l.id)">
-              Editer
-            </button>
-          </td>
+          
         
           <td>
               
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" (click)="alerte(l.id)">
-              Supprimer
-            </button>
+           
+            <div class="btn-group">
+              <a class="btn btn-success" (click)="EditLivreur(l.id)"><i class="icon_check_alt2"></i></a>
+              <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" (click)="alerte(l.id)">
+                <i class="icon_close_alt2"></i>
+              </a>   
+            </div>
 
           
           </td>

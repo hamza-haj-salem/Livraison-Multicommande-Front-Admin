@@ -43,7 +43,8 @@ import { AlerteDeSuppressionLivreurComponent } from './alerte/alerte-de-suppress
 import { AffecterCommandeLivreurComponent } from './commandes/affecter-commande-livreur/affecter-commande-livreur.component';
 import { ChatClientComponent } from './messages/chat-client/chat-client.component';
 import { ProfileComponent } from './admin/profile/profile.component';
-import { StatistiqueComponent } from './statistiques/statistique/statistique.component'; //à utiliser dans fire pour le stockage des images 
+import { StatistiqueComponent } from './statistiques/statistique/statistique.component';
+import { AlerteAffectationComponent } from './alerte/alerte-affectation/alerte-affectation.component'; //à utiliser dans fire pour le stockage des images 
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +79,7 @@ import { StatistiqueComponent } from './statistiques/statistique/statistique.com
     ChatClientComponent,
     ProfileComponent,
     StatistiqueComponent,
+    AlerteAffectationComponent,
     
   ],
   imports: [

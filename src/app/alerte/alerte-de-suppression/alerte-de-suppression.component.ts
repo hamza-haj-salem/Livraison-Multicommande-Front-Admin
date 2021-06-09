@@ -19,7 +19,7 @@ export class AlerteDeSuppressionComponent implements OnInit {
   ngOnInit(): void {
   }
   getIdProduitASupprimee() {
-    this.idProduit = this.local.retrieve("idProduit")
+    this.idProduit = this.local.retrieve("idProduit");
   }
   SupprimerProduit(idProduit) {
     console.log(this.idProduit)

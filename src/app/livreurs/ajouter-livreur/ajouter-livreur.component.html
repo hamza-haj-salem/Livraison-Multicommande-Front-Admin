@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
           <label>Choisir l'image du Livreur</label>
-          <input accept="image/*" class="form-control" type="file" #fileUploader formControlName="imageUrlLivreur"
+          <input accept="image/*" class="form-control" type="file" #fileUploader formControlName="imageUrl"
             (change)="showPreview($event)">
 
           <div class="text-danger" *ngIf="isSubmitted && formControls.imageUrlLivreur.errors?.required">Ce champ est
@@ -43,7 +43,7 @@
        
 
 
-        <button type="submit" class="btn btn-success btn-block float-right" (click)="ajouterLivreur()">Submit</button>
+        <button type="submit" class="btn btn-success btn-block float-right" >Submit</button>
       </form>
     </div>
   </div>

@@ -6,7 +6,7 @@
         <div id="conversation-list">
             <div class="conversation active"  *ngFor="let u of listeUtlisateurEnComm" (click)="afficherlisteMessage(u.id)">
 
-                <img src="/assets/menu/photo_profil_client/1.jpg"/>
+                <img src="{{u.imageUrl}}"/>
                 <div class="title-text">
                     {{u.nom}} {{u.prenom}}
                 </div>
@@ -65,6 +65,7 @@
 
                     <div class="message-content" *ngIf="m.uEnv.id == admin.id">
                         <!-- 1 : session-->
+                        
                         <div class="message-text"> {{m.contenu}}</div>
                         <div class="message-time"> {{m.dateEnvoi}}</div>
                     </div>
@@ -73,7 +74,7 @@
                 <!-- admin.id kenet :1-->
                 <div class="message-row other-message" *ngIf="m.uEnv.id != admin.id">
                     <div class="message-content">
-                        <img src="/assets/menu/photo_profil_client/1.jpg" alt="hamza haj salem" />
+                        <img src="{{m.uEnv.imageUrl}}" alt="hamza haj salem" />
                         <div class="message-text">
                             {{m.contenu}}
                         </div>

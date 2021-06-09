@@ -22,6 +22,7 @@ export class ListeLivreursComponent implements OnInit {
     this.serv.getListeLivreurs().subscribe(
       (data)=>{
         this.listeLivreurs=data;
+        console.log(this.listeLivreurs);
       },(err)=>{
 
       }

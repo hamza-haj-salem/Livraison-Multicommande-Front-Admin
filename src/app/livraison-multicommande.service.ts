@@ -2,21 +2,40 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Livreur } from './model/Livreur';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-
+import { AngularFirestore } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root'
 })
+
 export class LivraisonMulticommandeService {
+
   notificationMessage: number = 0;
   imageDetailList: AngularFireList<any>;
   imageDetailListLivreur: AngularFireList<any>;
-  constructor(private http: HttpClient, private firebase: AngularFireDatabase) {
 
+  private dbPath = "/commandes";
+  private dbPathLivreur = "/Livreurs";
+
+  commandsRef: any;
+  LivreursRef: any;
+  constructor(private http: HttpClient,
+    private firebase: AngularFireDatabase,
+    private afs: AngularFirestore) {
+    this.commandsRef = afs.collection(this.dbPath);
+    this.LivreursRef = afs.collection(this.dbPathLivreur);
   }
-  setNotMsg(n:number){
-    this.notificationMessage=n;
+  ajouterCmdFb(c: any): void {
+    console.log(c);
+    this.commandsRef.add(c);
   }
-  getNotMsg(){
+  ajouterLivreurFb(l: any): void {
+    console.log(l);
+    this.LivreursRef.add(l);
+  }
+  setNotMsg(n: number) {
+    this.notificationMessage = n;
+  }
+  getNotMsg() {
     return this.notificationMessage;
   }
   //FIREBASE : STOCKAGE DES IMAGES PRODUITS
@@ -37,7 +56,7 @@ export class LivraisonMulticommandeService {
     this.imageDetailListLivreur.push(imageDetailsLivreur);
   }
 
-  
+
   //LIVREUR 
   getListeLivreurs() {
     return this.http.get('http://localhost:8080/listeLivreur');
@@ -54,7 +73,7 @@ export class LivraisonMulticommandeService {
 
 
   //MESSAGES = CHAT
-  
+
 
 
   //PRODUIT
@@ -134,40 +153,43 @@ export class LivraisonMulticommandeService {
   getListeCommandes() {
     return this.http.get('http://localhost:8080/listeCommande');
   }
-  ajouterArchiveCommande(c:any){
-    return this.http.post('http://localhost:8080/ajouterArchiveCommande',c);
+  ajouterArchiveCommande(c: any) {
+    return this.http.post('http://localhost:8080/ajouterArchiveCommande', c);
   }
-  	// hathi juste pour modifier l etat d'une cmd (à en cours) w9t l'admin yaffectiha pour un livreur
-  modifierCommande(c:any){
-    return this.http.post('http://localhost:8080/modifierCommande',c);
+  // hathi juste pour modifier l etat d'une cmd (à en cours) w9t l'admin yaffectiha pour un livreur
+  modifierCommande(c: any) {
+    return this.http.post('http://localhost:8080/modifierCommande', c);
   }
   //ARCHIVE COMMANDE
   getListeArchiveCommandes() {
     return this.http.get('http://localhost:8080/listeArchiveCommande');
   }
   //MESSAGE
-  getListUtilisateurEnCommunication(id:number) {
-    return this.http.get('http://localhost:8080/listeUtilisateurEnCommunication/'+id);
+  getListUtilisateurEnCommunication(id: number) {
+    return this.http.get('http://localhost:8080/listeUtilisateurEnCommunication/' + id);
   }
 
-  getListMessageEnvByUtilisateur(id:number,idUEnCours:number) {
-    return this.http.get('http://localhost:8080/listeMessageByUtilisateur/'+id+'/'+idUEnCours);
+  getListMessageEnvByUtilisateur(id: number, idUEnCours: number) {
+    return this.http.get('http://localhost:8080/listeMessageByUtilisateur/' + id + '/' + idUEnCours);
   }
-  ajouterMessage(m:any){
-    return this.http.post('http://localhost:8080/ajouterMessage',m);
+  ajouterMessage(m: any) {
+    return this.http.post('http://localhost:8080/ajouterMessage', m);
   }
- 
+
   //UTILISATEUR
-  getUtilisateurById(id:number) {
-    return this.http.get('http://localhost:8080/UtilisateurById/'+id);
+  getUtilisateurById(id: number) {
+    return this.http.get('http://localhost:8080/UtilisateurById/' + id);
   }
 
   //ADMINISTRATEUR : bch nbda ne5dem bl admin mn hna 
-  verifierCordonneesAdministrateur(a:any) {
-    return this.http.get('http://localhost:8080/verifierCordonneesAdministrateur',a);
+  verifierCordonneesAdministrateur(a: any) {
+    return this.http.get('http://localhost:8080/verifierCordonneesAdministrateur', a);
   }
   findAdministrateurByEmail(emailAdministrateur: string) {
     return this.http.get('http://localhost:8080/findAdministrateurByEmail/' + emailAdministrateur);
   }
-  
+  updateAdmin(a: any) {
+    return this.http.post('http://localhost:8080/updateAdmin', a);
+  }
+
 }

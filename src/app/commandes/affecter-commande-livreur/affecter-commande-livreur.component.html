@@ -38,12 +38,13 @@
                     </td>
                     <td>
                         <p style="color: red" *ngIf="!afficherListeLivreur;"> déja affecté</p>
-                        <select name="livreur" *ngIf="afficherListeLivreur;">
+                        <select name="livreur" *ngIf="afficherListeLivreur;" name="idLivreurSelectionne" [(ngModel)]="idLivreurSelectionne">
                            
                             <option value="--Aucune Affectation--">--Aucune Affectation--</option>
-                            <option *ngFor="let l of listeLivreurs">
-                                {{l.id}} . {{l.nom}}
+                            <option *ngFor="let l of listeLivreurs" >
+                                {{l.id}}
                             </option>
+                            
                         </select>
 
                     </td>

@@ -15,9 +15,8 @@ import { Administrateur } from 'src/app/model/administrateur';
 export class ChatClientComponent implements OnInit {
 //@Output() envEvt = new EventEmitter();
   listeUtlisateurEnComm: any = [];
-  listeMessageByUtilisateurNotification1: any = [];
-  listeMessageByUtilisateurNotification2: any = [];
-  listeMessageByUtilisateur: any = [];
+  
+  static listeMessageByUtilisateur: any = [];
   idU: number;// cette vbl contien l id de user qui va former 
   //la partie receptrice de msg
   uEnv: any = { id: null, nom: "", prenom: "", image_id: null };
@@ -26,7 +25,7 @@ export class ChatClientComponent implements OnInit {
   admin: any = Administrateur;
   notificationMessage: number = 0;
   idUtlisateurEnCour: number;
-  dernierMessage: any = Message;
+  static dernierMessage: any = Message;
 
   constructor(private serv: LivraisonMulticommandeService,
     private local: LocalStorageService,
@@ -36,7 +35,7 @@ export class ChatClientComponent implements OnInit {
       (data) => {
         this.listeUtlisateurEnComm = data;
         console.log(this.listeUtlisateurEnComm);
-        //this.afficherlisteMessage(this.listeUtlisateurEnComm[0].id);
+        this.afficherlisteMessage(this.listeUtlisateurEnComm[0].id);
       }, (err) => {
         console.log(err);
       }
@@ -45,14 +44,14 @@ export class ChatClientComponent implements OnInit {
     setInterval(() => {
       this.serv.getListMessageEnvByUtilisateur(this.idU, this.admin.id).subscribe(
         (data) => {
-          this.listeMessageByUtilisateur = data;
-          console.log(this.dernierMessage);
-          console.log(this.listeMessageByUtilisateur[0]);
-          if (this.dernierMessage.id != this.listeMessageByUtilisateur[0].id ) {
+          ChatClientComponent.listeMessageByUtilisateur = data;
+          console.log(ChatClientComponent.dernierMessage);
+          console.log(ChatClientComponent.listeMessageByUtilisateur[0]);
+          if (ChatClientComponent.dernierMessage.id != ChatClientComponent.listeMessageByUtilisateur[0].id ) {
             this.notificationMessage = 1;
             console.log(this.notificationMessage)
             this.serv.setNotMsg(this.notificationMessage);
-          }else if(this.dernierMessage.id == this.listeMessageByUtilisateur[0].id){
+          }else if(ChatClientComponent.dernierMessage.id == ChatClientComponent.listeMessageByUtilisateur[0].id){
             
             this.serv.setNotMsg(0);
             console.log("00")
@@ -66,6 +65,12 @@ export class ChatClientComponent implements OnInit {
 
 
   }
+  get dernierMessage() {
+    return ChatClientComponent.dernierMessage;
+  }
+  get listeMessageByUtilisateur() {
+    return ChatClientComponent.listeMessageByUtilisateur;
+  }
 
   ngOnInit(): void {
    
@@ -75,14 +80,14 @@ export class ChatClientComponent implements OnInit {
   afficherlisteMessage(id) {
     this.serv.getListMessageEnvByUtilisateur(id, this.admin.id).subscribe(
       (data) => {
-        this.listeMessageByUtilisateur = data;
-        this.dernierMessage = this.listeMessageByUtilisateur[0]; //0 5ater jayebhom ml base 
+        ChatClientComponent.listeMessageByUtilisateur = data;
+        ChatClientComponent.dernierMessage = ChatClientComponent.listeMessageByUtilisateur[0]; //0 5ater jayebhom ml base 
         //mratbin bl date donc a5er msg bcch tkoun l'indice mte3ou 0 
-        console.log(this.dernierMessage);
-        console.log(this.listeMessageByUtilisateur);
+        console.log(ChatClientComponent.dernierMessage);
+        console.log(ChatClientComponent.listeMessageByUtilisateur);
         this.idU = id;
         console.log(this.idU);
-        console.log(this.listeMessageByUtilisateur);
+        console.log(ChatClientComponent.listeMessageByUtilisateur);
       }, (err) => {
 
       }

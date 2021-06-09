@@ -130,7 +130,7 @@
                 <span class="photo"><img alt="avatar" src="assets/menu/img/avatar-mini.jpg"></span>
                 <span class="subject">
                   <span class="from">{{u.nom}}</span>
-                  <span class="time">{{dernierMessage.dateEnvoi}}</span>
+                  <span class="time" *ngIf="dernierMessage.uEnv.id==u.id">{{dernierMessage.dateEnvoi}}</span>
                 </span>
                 <span class="message">
                   {{dernierMessage.contenu}}
@@ -169,9 +169,9 @@
       <li class="dropdown">
         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
           <span class="profile-ava">
-            <img alt="" src="assets/menu/img/hamza-avatar.jpg">
+            <img alt="" src="{{admin.imageUrl}}">
           </span>
-          <span class="username">Hamza Haj Salem</span>
+          <span class="username">{{admin.nom}} {{admin.prenom}}</span>
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu extended logout">

@@ -27,6 +27,7 @@ import { AffecterCommandeLivreurComponent } from './commandes/affecter-commande-
 import { ChatClientComponent } from './messages/chat-client/chat-client.component';
 import { ProfileComponent } from './admin/profile/profile.component';
 import { StatistiqueComponent } from './statistiques/statistique/statistique.component';
+import { AlerteAffectationComponent } from './alerte/alerte-affectation/alerte-affectation.component';
 
 const routes: Routes = [
   { path:"login",component:LoginAdminComponent},
@@ -57,6 +58,7 @@ const routes: Routes = [
     { path:"chatClient",component:ChatClientComponent},
     { path:"profil",component:ProfileComponent},
     { path:"statistique",component:StatistiqueComponent},
+    { path:"alerteMalAffectation",component:AlerteAffectationComponent},
 
 
     

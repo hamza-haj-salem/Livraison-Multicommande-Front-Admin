@@ -61,8 +61,9 @@ export class NavbarComponent implements OnInit {
 
 
   desactiverNotMsg() {
-    this.serv.setNotMsg(0);
-    //console.log(chat-client.dernierMessage);
+    //this.serv.setNotMsg(0);
+    console.log(ChatClientComponent.dernierMessage);
+    ChatClientComponent.dernierMessage=ChatClientComponent.listeMessageByUtilisateur[0];
   }
 
   desactiverNotCom() {

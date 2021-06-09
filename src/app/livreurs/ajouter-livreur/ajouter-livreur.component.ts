@@ -4,8 +4,9 @@ import { LivraisonMulticommandeService } from 'src/app/livraison-multicommande.s
 import { Livreur } from 'src/app/model/Livreur';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { finalize } from "rxjs/operators";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-ajouter-livreur',
@@ -19,7 +20,7 @@ export class AjouterLivreurComponent implements OnInit {
 
   selectedImage: any = null;
   formTemplate = new FormGroup({
-    imageUrlLivreur: new FormControl('', Validators.required),
+    imageUrl: new FormControl('', Validators.required),
     nom: new FormControl('', Validators.required),
     prenom: new FormControl('', Validators.required),
   })
@@ -39,23 +40,34 @@ export class AjouterLivreurComponent implements OnInit {
       this.selectedImage = null;
     }
   }
+  task: AngularFireUploadTask;
+  progressValue: Observable<number>;
+  downloadableURL: '';
 
-  onSubmit(formValue) {
+  async onSubmit(formValue) {
     this.isSubmitted = true;
-    var filePath = `Livreur/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
-    const fileRef = this.storage.ref(filePath);
-    this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
-      finalize(() => {
-        fileRef.getDownloadURL().subscribe((url) => {
-          formValue['imageUrlLivreur'] = url;
-          this.livreur2.imageUrlLivreur = url;
-          console.log("img" + this.livreur2.imageUrlLivreur)
-          this.serv.insertImageDetailsLivreur(formValue);
-          this.resetForm();
-        })
-      })
-    ).subscribe();
+    var filePath = `photoProfilLivreur/${this.selectedImage.name}`;
+    console.log(filePath);
+    this.task = this.storage.upload(filePath, this.selectedImage);
+    this.progressValue = this.task.percentageChanges();
+    (await this.task).ref.getDownloadURL().then(url => {
+      this.downloadableURL = url;
+      console.log(this.downloadableURL);
+      //this.local.store("url", this.downloadableURL);
+      //localStorage.setItem('url',this.downloadableURL);
 
+      // à la place de la fct ajoutertLivreur()
+      this.livreur2 = Object.assign({}, this.formTemplate.value);
+      this.livreur2.imageUrl = this.downloadableURL;
+      console.log(this.livreur2);
+      
+      this.serv.addLivreur(this.livreur2).subscribe(
+        (data) => {
+          this.route.navigate(["/listeLivreurs"])
+        }, (err) => { }
+      )
+      this.serv.ajouterLivreurFb(this.livreur2); 
+    })
   }
 
   get formControls() {
@@ -92,14 +104,6 @@ export class AjouterLivreurComponent implements OnInit {
     this.serv.getImageDetailListLivreur();
     this.resetForm();
   }
-  ajouterLivreur() {
-    this.livreur2 = Object.assign({}, this.formTemplate.value);
-    this.serv.addLivreur(this.livreur2).subscribe(
-      (data) => {
-        this.route.navigate(["/listeLivreurs"])
-      }, (err) => { }
-    )
-
-  }
+  
 
 }

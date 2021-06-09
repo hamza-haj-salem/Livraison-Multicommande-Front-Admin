@@ -90,30 +90,19 @@
                     <div class="tab-content">
                         <div id="recent-activity" class="tab-pane active">
                             <div class="profile-activity">
-                                <div class="act-time">
+                                <div class="act-time" *ngFor="let c of listeCommandes">
                                     <div class="activity-body act-in">
                                         <span class="arrow"></span>
                                         <div class="text">
                                             <a href="#" class="activity-img"><img class="avatar"
-                                                    src="img/chat-avatar.jpg" alt=""></a>
-                                            <p class="attribution"><a href="#">Jonatanh Doe</a> at 4:25pm, 30th Octmber
-                                                2014</p>
-                                            <p>It is a long established fact that a reader will be distracted layout</p>
+                                                    src="{{c.client.imageUrl}}" alt=""></a>
+                                            <p class="attribution"><a href="#">{{c.client.nom}}</a> à {{c.dateLivraison}}
+                                                </p>
+                                            <p *ngFor="let l of c.ligneCommande">{{l.produit.titre}}: {{l.produit.description}}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="act-time">
-                                    <div class="activity-body act-in">
-                                        <span class="arrow"></span>
-                                        <div class="text">
-                                            <a href="#" class="activity-img"><img class="avatar"
-                                                    src="img/chat-avatar.jpg" alt=""></a>
-                                            <p class="attribution"><a href="#">Jhon Loves </a> at 5:25am, 30th Octmber
-                                                2014</p>
-                                            <p>Knowledge speaks, but wisdom listens.</p>
-                                        </div>
-                                    </div>
-                                </div>
+
 
 
                             </div>
@@ -132,17 +121,17 @@
                                     <h1>Détails</h1>
                                     <div class="row">
                                         <div class="bio-row">
-                                            <p><span>Nom </span>  </p>
+                                            <p><span>Nom: {{admin.nom}} </span> </p>
                                         </div>
                                         <div class="bio-row">
-                                            <p><span> Prenom </span>: </p>
+                                            <p><span> Prenom: {{admin.prenom}} </span> </p>
+                                        </div>
+                                       
+                                        <div class="bio-row">
+                                            <p><span>Email: {{admin.email}} </span> </p>
                                         </div>
                                         <div class="bio-row">
-                                            <p><span>Date de naissance</span>:</p>
-                                        </div>
-                                        
-                                        <div class="bio-row">
-                                            <p><span>Phone </span>: (+021) 956 789123</p>
+                                            <p><span>Télephone: {{admin.numTelephone}}</span>  </p>
                                         </div>
                                     </div>
                                 </div>
@@ -157,38 +146,56 @@
                             <section class="panel">
                                 <div class="panel-body bio-graph-info">
                                     <h1> Profile Info</h1>
-                                    <form class="form-horizontal" role="form">
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Nom</label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="f-name" placeholder=" ">
-                                            </div>
+                                    <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+                                        <div class="text-center">
+                                            <img [src]="imgSrc" width="200px" height="150px" (click)="fileUploader.click()">
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label">Prenom</label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="l-name" placeholder=" ">
-                                            </div>
+                                            <label>Choisir photo du profil</label>
+                                            <input accept="image/*" class="form-control" type="file" #fileUploader
+                                                formControlName="imageUrl" (change)="showPreview($event)">
+                    
+                    
                                         </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label">Image</label>
-                                            <div class="col-lg-10">
-                                                <textarea name="" id="" class="form-control" cols="30"
-                                                    rows="5"></textarea>
-                                            </div>
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" name="email" formControlName="email">
                                         </div>
+                    
+                    
+                                        
+                    
                                         <div class="form-group">
-
+                                            <label>Nom</label>
+                                            <input type="text" class="form-control" name="nom" formControlName="nom">
                                         </div>
-
-
-
+                    
+                    
                                         <div class="form-group">
-                                            <div class="col-lg-offset-2 col-lg-10">
-                                                <button type="submit" class="btn btn-primary">Save</button>
-                                                <button type="button" class="btn btn-danger">Cancel</button>
-                                            </div>
+                                            <label>Pren</label>
+                                            <input type="text" class="form-control" name="prenom" formControlName="prenom">
                                         </div>
+                    
+                                        
+                    
+                                        <div class="form-group">
+                                            <label>Numéro de télephone</label>
+                                            <input type="number" class="form-control" name="numTelephone" formControlName="numTelephone">
+                                        </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                                        <button type="submit" class="btn btn-success btn-block float-right">Submit</button>
                                     </form>
                                 </div>
                             </section>

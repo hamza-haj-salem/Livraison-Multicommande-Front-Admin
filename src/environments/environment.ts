@@ -6,6 +6,7 @@ export const environment = {
   production: false,
 
   firebaseConfig : {
+    /*
     apiKey: "AIzaSyDe0_YZGY8l09B78mYSFU7dq1J_N1RbMNg",
     authDomain: "fir-db-ee8d3.firebaseapp.com",
     databaseURL: "https://fir-db-ee8d3.firebaseio.com",
@@ -13,7 +14,17 @@ export const environment = {
     storageBucket: "fir-db-ee8d3.appspot.com",
     messagingSenderId: "1049149248640",
     appId: "1:1049149248640:web:26116a60f77e46a48e0265",
-    measurementId: "G-PSNNEP4MGQ"
+    measurementId: "G-PSNNEP4MGQ"*/
+    // kenet fl proj 1 kif da5alt livreur 7awalt ll proje mt3 liv (2) fl firebase
+    apiKey: "AIzaSyDUhGJdTt04UnJ04VYfWiAjWDOZ3oMs6-E",
+    authDomain: "application-80431.firebaseapp.com",
+    databaseURL: "https://application-80431.firebaseio.com",
+    projectId: "application-80431",
+    storageBucket: "application-80431.appspot.com",
+    messagingSenderId: "88965398296",
+    appId: "1:88965398296:web:61ae2a7a0cda753c32a86d",
+    measurementId: "G-8CZ51XQ063"
+
   }
 };
 
