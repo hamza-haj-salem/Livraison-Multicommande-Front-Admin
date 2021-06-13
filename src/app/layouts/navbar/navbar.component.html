@@ -127,7 +127,7 @@
             </li>
             <li *ngFor="let u of listeUtlisateurEnComm">
               <a>
-                <span class="photo"><img alt="avatar" src="assets/menu/img/avatar-mini.jpg"></span>
+                <span class="photo"><img alt="avatar" src="{{u.imageUrl}}"></span>
                 <span class="subject">
                   <span class="from">{{u.nom}}</span>
                   <span class="time" *ngIf="dernierMessage.uEnv.id==u.id">{{dernierMessage.dateEnvoi}}</span>

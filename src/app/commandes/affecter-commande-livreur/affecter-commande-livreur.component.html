@@ -26,18 +26,18 @@
                 <tr>
                    
                     <td>
-                        <input disabled="disabled" type="text" [(ngModel)]="commande.adresseLivraison">
+                        <input style="border: hidden;" disabled="disabled" type="text" [(ngModel)]="commande.adresseLivraison">
                     </td>
                     
                     <td>
-                        <input disabled="disabled" type="text" [(ngModel)]="commande.dateLivraison">
+                        <input style="border: hidden;" disabled="disabled" type="text" [(ngModel)]="commande.dateLivraison">
                     </td>
                     
                     <td>
-                        <input disabled="disabled" type="text" [(ngModel)]="commande.client.nom">
+                        <input style="border: hidden;" disabled="disabled" type="text" [(ngModel)]="commande.client.nom">
                     </td>
                     <td>
-                        <p style="color: red" *ngIf="!afficherListeLivreur;"> déja affecté</p>
+                        <p style="color: red" *ngIf="!afficherListeLivreur;"><b> déja affecté</b></p>
                         <select name="livreur" *ngIf="afficherListeLivreur;" name="idLivreurSelectionne" [(ngModel)]="idLivreurSelectionne">
                            
                             <option value="--Aucune Affectation--">--Aucune Affectation--</option>

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Livreur } from './model/Livreur';
+//import { Livreur } from './model/Livreur';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +11,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class LivraisonMulticommandeService {
 
   notificationMessage: number = 0;
+  notificationCommandeBoolean: boolean;
+  ancienNbrCommande: number=0;
   imageDetailList: AngularFireList<any>;
   imageDetailListLivreur: AngularFireList<any>;
 
@@ -20,7 +23,9 @@ export class LivraisonMulticommandeService {
   LivreursRef: any;
   constructor(private http: HttpClient,
     private firebase: AngularFireDatabase,
-    private afs: AngularFirestore) {
+    private afs: AngularFirestore,
+    //private fireAuth: AngularFireAuth,
+    ) {
     this.commandsRef = afs.collection(this.dbPath);
     this.LivreursRef = afs.collection(this.dbPathLivreur);
   }
@@ -31,6 +36,21 @@ export class LivraisonMulticommandeService {
   ajouterLivreurFb(l: any): void {
     console.log(l);
     this.LivreursRef.add(l);
+  }
+  livreurRegister(email,motDePasse){
+    //this.fireAuth.auth.createUserWithEmailAndPassword(email, motDePasse)
+  }
+  setNbrNotComm(n: number) {
+    this.ancienNbrCommande =  n;
+  }
+  getNbrNotComm() {
+    return this.ancienNbrCommande;
+  }
+  setNotComm(n: boolean) {
+    this.notificationCommandeBoolean = n;
+  }
+  getNotComm() {
+    return this.notificationCommandeBoolean;
   }
   setNotMsg(n: number) {
     this.notificationMessage = n;

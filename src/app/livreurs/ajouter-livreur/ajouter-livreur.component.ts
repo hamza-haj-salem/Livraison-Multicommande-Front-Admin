@@ -23,6 +23,10 @@ export class AjouterLivreurComponent implements OnInit {
     imageUrl: new FormControl('', Validators.required),
     nom: new FormControl('', Validators.required),
     prenom: new FormControl('', Validators.required),
+    secteur: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    motDePasse: new FormControl('', Validators.required),
+    numTelephone: new FormControl('', Validators.required),
   })
   imgSrc: string;
   isSubmitted: boolean;

@@ -13,17 +13,18 @@ import { Administrateur } from 'src/app/model/administrateur';
 export class NavbarComponent implements OnInit {
   admin: Administrateur;
   notificationMessage: number;
-  notificationCommande: number;
+  nvNbrCommande: number;
+  ancienNbrCommande: number;
   listeMessageByUtilisateurNotification1: any = [];
   listeUtlisateurEnComm: any = [];
   dernierMessage: string = "";
 
-  notificationCommandeBoolean: boolean = true;
+  notificationCommandeBoolean: boolean;
   listeCommandes: any = [];
   constructor(private serv: LivraisonMulticommandeService,
     private local: LocalStorageService,
     private route: Router,) {
-
+    this.serv.getNotComm();
     this.admin = this.local.retrieve("admin");
     setInterval(() => {
       this.notificationMessage = this.serv.getNotMsg();
@@ -45,13 +46,21 @@ export class NavbarComponent implements OnInit {
         console.log(err);
       }
     )
+    setInterval(() => {
+      this.notificationCommandeBoolean = this.serv.getNotComm();
+      this.ancienNbrCommande = this.serv.getNbrNotComm();
+      this.serv.getListeCommandes().subscribe(
+        (data) => {
+          this.listeCommandes = data;
+          this.nvNbrCommande = this.listeCommandes.length;
+          this.serv.setNbrNotComm(this.nvNbrCommande);
+          if (this.ancienNbrCommande != this.nvNbrCommande) {
+            this.serv.setNotComm(true);
+          }
+        }, (err) => { }
+      )
+    }, 2000);
 
-    this.serv.getListeCommandes().subscribe(
-      (data) => {
-        this.listeCommandes = data;
-        this.notificationCommande = this.listeCommandes.length;
-      }, (err) => { }
-    )
 
   }
 
@@ -63,11 +72,11 @@ export class NavbarComponent implements OnInit {
   desactiverNotMsg() {
     //this.serv.setNotMsg(0);
     console.log(ChatClientComponent.dernierMessage);
-    ChatClientComponent.dernierMessage=ChatClientComponent.listeMessageByUtilisateur[0];
+    ChatClientComponent.dernierMessage = ChatClientComponent.listeMessageByUtilisateur[0];
   }
 
   desactiverNotCom() {
-    this.notificationCommandeBoolean = false;
+    this.serv.setNotComm(false);
   }
 
 }
