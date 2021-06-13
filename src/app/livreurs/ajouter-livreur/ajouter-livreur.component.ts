@@ -5,9 +5,9 @@ import { LivraisonMulticommandeService } from 'src/app/livraison-multicommande.s
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
-import { finalize } from "rxjs/operators";
+//import { finalize } from "rxjs/operators";
 import { Observable } from 'rxjs';
-import { Livreur } from 'src/app/model/Livreur';
+import { Livreur } from 'src/app/model/livreur';
 
 @Component({
   selector: 'app-ajouter-livreur',
