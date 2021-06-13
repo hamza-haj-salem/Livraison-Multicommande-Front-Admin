@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
 import { LivraisonMulticommandeService } from 'src/app/livraison-multicommande.service';
-import { Livreur } from 'src/app/model/Livreur';
+
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { finalize } from "rxjs/operators";
 import { Observable } from 'rxjs';
+import { Livreur } from 'src/app/model/Livreur';
 
 @Component({
   selector: 'app-ajouter-livreur',
