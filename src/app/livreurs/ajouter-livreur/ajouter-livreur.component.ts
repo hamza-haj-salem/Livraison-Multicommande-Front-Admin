@@ -7,7 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 //import { finalize } from "rxjs/operators";
 import { Observable } from 'rxjs';
-import { Livreur } from 'src/app/model/livreur';
+import { Livreur } from '../../model/Livreur';
 
 @Component({
   selector: 'app-ajouter-livreur',

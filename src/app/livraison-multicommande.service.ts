@@ -212,4 +212,10 @@ export class LivraisonMulticommandeService {
     return this.http.post('http://localhost:8080/updateAdmin', a);
   }
 
+  //STATISTIQUE
+  topProdVendue(){
+    return this.http.get('http://localhost:8080/topProdVendue');
+
+  }
+
 }

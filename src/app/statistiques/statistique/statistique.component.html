@@ -8,6 +8,42 @@
             <div class="panel-body">
                 <div class="tab-pane" id="chartjs">
                     <div class="row">
+                        <h4><b>Le produit le plus vendue cette periode est :</b> <h3 style="color: red;"> {{listeTopProdVendue[0].titre}}:{{listeTopProdVendue[0].description}}</h3></h4>
+                        <h2> Liste de top produits vendue :</h2>
+                        <table class="table table-striped table-advance table-hover">
+                           
+                            <thead>
+                              <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Titre</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">description</th>
+                                <th scope="col">nature</th>
+                                <th scope="col">sousCategorie</th>
+                                <th><i class="icon_menu"></i>Stock</th>
+                                <th><i class="icon_documents_alt"></i> Prix</th>
+                              
+                                
+                              </tr>
+                              
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let p of listeTopProdVendue">
+                                <td>{{ p.idProduit}}</td>
+                                <td>{{ p.titre}}</td>
+                                <td> <img style="width: 30px; height: 30px;" class="img" alt="avatar" src="{{p.imageUrl}}"></td>
+                                <td>{{ p.description}}</td>
+                                <td>{{ p.nature}}</td>
+                                <td>{{ p.sousCategorie.titre}}</td>
+                                <td>{{ p.stock}}</td>
+                                <td>{{ p.prix}}</td>
+                      
+                               
+                      
+                      
+                              </tr>
+                            </tbody>
+                          </table>
                         <!-- Line -->
                         <div class="col-lg-6">
                             <section class="panel">

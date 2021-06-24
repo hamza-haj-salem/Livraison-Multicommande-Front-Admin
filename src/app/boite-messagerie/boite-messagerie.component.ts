@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorage, LocalStorageService } from 'ngx-webstorage';
-import { Livreur } from '../model/Livreur';
+import { Livreur } from  'src/app/model/Livreur';//'../model/Livreur';
 
 @Component({
   selector: 'app-boite-messagerie',
@@ -8,7 +8,7 @@ import { Livreur } from '../model/Livreur';
   styleUrls: ['./boite-messagerie.component.scss']
 })
 export class BoiteMessagerieComponent implements OnInit {
-  l=new Livreur();
+  l:Livreur//new Livreur();
   message:any=[]
   message2:any=[]
 
