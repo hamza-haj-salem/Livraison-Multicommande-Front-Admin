@@ -11,7 +11,13 @@ export class Commande {
     public client: Client;
     public livreur: Livreur;
 
+    public prixTotal:number;
+
     constructor(){}
+
+    public set $prixTotal(x:number){
+        this.$prixTotal=x;
+    }
 
     public set $livreur(x:Livreur){
         this.$livreur=x;

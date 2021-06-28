@@ -17,7 +17,7 @@
                     <th scope="col">Adresse Livraison</th>
                     <th scope="col">Etat</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Lignes Commandes (Produits)</th>
+                    <th scope="col">Livreur</th>
                     <th scope="col">Client</th>
                     
                 </tr>
@@ -29,22 +29,7 @@
                     <td>{{ c.etat}}</td>
                     <td>{{ c.dateLivraison}}</td>
                     <td>
-                        <div class="col-3">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Nom Produit</th>
-                                        <th scope="col">Quantite</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let l of c.ligneCommande">
-                                        <td>{{ l.produit.titre}}</td>
-                                        <td>{{ l.quantite}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        {{ c.livreur.nom}}
                     </td>
                     <td>{{ c.client.nom}}</td>
                 </tr>

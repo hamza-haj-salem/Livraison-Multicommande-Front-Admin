@@ -43,7 +43,7 @@ export class ListeCommandeComponent implements OnInit {
   }
   details(c){
     this.local.store("cmdDetails",c);
-    this.route.navigate[("detailsCommande")];
+    this.route.navigate(["detailsCommande"]);
   }
 
 }

@@ -74,7 +74,7 @@
                 <!-- admin.id kenet :1-->
                 <div class="message-row other-message" *ngIf="m.uEnv.id != admin.id">
                     <div class="message-content">
-                        <img src="{{m.uEnv.imageUrl}}" alt="hamza haj salem" />
+                        <img src="{{m.uEnv.imageUrl}}" style="width: 30px;"/>
                         <div class="message-text">
                             {{m.contenu}}
                         </div>
@@ -98,7 +98,7 @@
                         <input  type="text" placeholder="type a message" [(ngModel)]="message.contenu" />
                     </td>
                     <td>
-                        <button type="submit" (click)="envoyerMessage()">env</button>
+                        <button type="submit" (click)="envoyerMessage()">envoyer</button>
     
                     </td>
                 </tr>

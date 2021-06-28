@@ -50,44 +50,33 @@ export class AffecterCommandeLivreurComponent implements OnInit {
       (data) => {
         this.livreurSelectionne = data;
         console.log(this.livreurSelectionne);
-        this.commande.livreur = this.livreurSelectionne;
-        this.commande.etat = "en attente de livraison";
-        this.serv.ajouterCmdFb(this.commande);
-        console.log(this.commande);
-        this.afficherListeLivreur = !this.afficherListeLivreur;
-        this.serv.modifierCommande(commande).subscribe(
-          (data) => {
 
-            console.log(commande);
-            this.route.navigate(["/listeCommandes"]);
-          }, (err) => { }
-        )
+        if (commande.adresseLivraison != this.livreurSelectionne.secteur) {
+         alert("Ce Livreur ne peux pas effectuées cette commande");
+        }else {
+    
+          this.commande.livreur = this.livreurSelectionne;
+          this.commande.etat = "en attente de livraison";
+          this.serv.ajouterCmdFb(this.commande);
+          console.log(this.commande);
+          this.afficherListeLivreur = !this.afficherListeLivreur;
+          this.serv.modifierCommande(commande).subscribe(
+            (data) => {
+  
+              console.log(commande);
+              this.route.navigate(["/listeCommandes"]);
+            }, (err) => { }
+          )
+        }
+        /*
+        */
 
 
       }, (err) => { }
     )
 
     /* 
-      if (commande.adresseLivraison != this.livreurSelectionne.secteur) {
-      console.log(commande.adresseLivraison,+"&&"+ this.livreurSelectionne.secteur)
-      this.commande.livreur = this.livreurSelectionne;
-      this.commande.etat = "en attente de livraison";
-      this.local.store("commandeMalAffecté", commande);
-      this.route.navigate(["/alerte"]);
-    }else {
-
-      console.log(this.livreurSelectionne);
-      this.serv.ajouterCmdFb(this.commande);
-      console.log(this.commande);
-      this.afficherListeLivreur = !this.afficherListeLivreur;
-      this.serv.modifierCommande(commande).subscribe(
-        (data) => {
-
-          console.log(commande);
-          this.route.navigate(["/listeCommandes"]);
-        }, (err) => { }
-      )
-    }
+     
     */
 
 
